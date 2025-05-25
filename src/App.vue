@@ -1,10 +1,16 @@
 <template>
-  <nav>
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
-  </nav>
-  <router-view/>
+  <PaisView />
 </template>
+
+<script>
+import PaisView from '@/views/PaisView.vue';
+export default {
+  name: 'app',
+  components: {
+    PaisView,
+  }
+}
+</script>
 
 <style>
 #app {
