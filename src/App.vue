@@ -1,15 +1,17 @@
 <template>
-  <PaisView />
+  <nav>
+    <NavBar />
+    <router-view />
+  </nav>
 </template>
 
 <script>
-import PaisView from '@/views/PaisView.vue';
+import NavBar from "@/components/NavBar.vue";
 export default {
-  name: 'app',
   components: {
-    PaisView,
-  }
-}
+    NavBar,
+  },
+};
 </script>
 
 <style>
