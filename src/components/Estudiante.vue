@@ -142,13 +142,14 @@ export default {
           valido = false;
         } else {
           this.mensaje.apellido = null;
+          return false;
         }
-
         return valido;
       } catch (error) {
-        console.error("Error en validación:", error);
-        this.mensajeFinal = "Ha ocurrido un error en el sistema";
+        console.error("Error ha ocurrido un problema");
+        console.error(error);
         this.mostrar = true;
+        this.mensajeFinal = "Ha ocurrido un error en el sistema";
         return false;
       }
     },
@@ -164,12 +165,44 @@ export default {
     obtenerPathVariable() {
       const cedula = this.$route.params.cedula;
       console.log("Cédula:", cedula);
+
       const anio = this.$route.query.anio;
       console.log("Año:", anio);
       const mes = this.$route.query.mes;
       console.log("Mes:", mes);
     },
   },
+  beforeCreate() {
+    console.log("beforeCreate");
+  },
+  created() {
+    console.log("create");
+  },
+  beforeMount() {
+    console.log("beforeMount");
+  },
+  mounted() {
+    const cedula = this.$route.params.cedula;
+      console.log("Cédula:", cedula);
+
+      const anio = this.$route.query.anio;
+      console.log("Año:", anio);
+      const mes = this.$route.query.mes;
+      console.log("Mes:", mes);
+    console.log("Mounted");
+  },
+  beforeUpdate() {
+    console.log("beforeUpdate");
+  },
+  updated(){
+    console.log("updated");
+  },
+  beforeUnmount(){
+    console.log("Destruyo o quito un componente");
+  },
+  unmounted(){
+
+  }
 };
 </script>
 
