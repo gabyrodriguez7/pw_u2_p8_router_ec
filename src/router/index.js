@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import EstudianteView from "../views/EstudianteView.vue";
 import EstudianteTablaView from "../views/EstudianteTablaView.vue";
 import MascotaView from "../views/MascotaView.vue";
+import PokemonView from "../views/PokemonView.vue";
 
 const routes = [
   {
@@ -18,6 +19,11 @@ const routes = [
     path: "/mascota",
     name: "mascotaView",
     component: MascotaView,
+  },
+    {
+    path: "/pokemon/",
+    name: "pokemonView",
+    component: PokemonView,
   },
   {
     path: "/contador/numeros",

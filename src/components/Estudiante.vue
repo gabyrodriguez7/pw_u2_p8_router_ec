@@ -1,39 +1,36 @@
 <template>
   <div class="container">
     <!-- Mensaje de éxito o error -->
-    <div v-show="mostrar" class="alert">
+    <div v-show="mostrarMensaje" class="alert">
       <h2>{{ mensajeFinal }}</h2>
     </div>
-
+  
     <label for="id_nombre">Nombre: </label>
     <input v-model="nuevoNombre" id="id_nombre" type="text" />
     <span v-if="mensaje.nombre">{{ mensaje.nombre }}</span>
-
+  
     <label for="id_apellido">Apellido: </label>
     <input v-model="nuevoApellido" id="id_apellido" type="text" />
     <span v-if="mensaje.apellido">{{ mensaje.apellido }}</span>
-
+  
     <label for="id_edad">Edad: </label>
     <input v-model="nuevoEdad" id="id_edad" type="number" />
-
+  
     <label for="id_FechaNacimiento">Fecha de nacimiento: </label>
     <input v-model="nuevoFechaNacimiento" id="id_FechaNacimiento" type="date" />
-
+  
     <label for="id_email">Email: </label>
     <input v-model="nuevoEmail" id="id_email" type="email" />
-
+  
     <button @click="agregarEstudiante">Agregar</button>
-
+  
     <ul>
-      <li
-        v-for="{ nombre, apellido, edad, fechaNacimiento, email } in lista"
-        :key="nombre + apellido"
-      >
+      <li v-for="{ nombre, apellido, edad, fechaNacimiento, email } in lista" :key="nombre + apellido">
         Nombre: {{ nombre }} - Apellido: {{ apellido }} - Edad: {{ edad }} -
         Fecha de nacimiento: {{ fechaNacimiento }} - Email: {{ email }}
       </li>
     </ul>
-
+  
     <button @click="obtenerPathVariable">Path Variable</button>
   </div>
 </template>
@@ -47,12 +44,6 @@ export default {
       nuevoEdad: null,
       nuevoFechaNacimiento: null,
       nuevoEmail: null,
-      mensaje: {
-        nombre: null,
-        apellido: null,
-      },
-      mensajeFinal: null,
-      mostrar: false,
       lista: [
         {
           nombre: "Gabriela",
@@ -104,6 +95,17 @@ export default {
           email: "luisb@uce.edu.ec",
         },
       ],
+      mostrarMensaje: false,
+      nombreMensaje: false,
+      apellidoMensaje: false,
+      fechaNacimientoMensaje: false,
+      emailMensaje: false,
+      monedaMensaje: false,
+      mensaje: {
+        nombre: null,
+        apellido: null,
+      },
+      mensajeFinal: null,
     };
   },
   methods: {
@@ -118,37 +120,42 @@ export default {
         };
 
         this.lista.push(nuevo);
-        this.mensajeFinal = "Estudiante guardado correctamente.";
-        this.mostrar = true;
+
+        this.mostrarMensaje = true;
         setTimeout(() => {
-          this.mostrar = false;
+          this.mostrarMensaje = false;
         }, 3000);
+        this.mensajeFinal="Estudiante guardado";
         this.limpiarPagina();
       }
     },
     validarEntradas() {
       try {
-        let valido = true;
-
+        let valido = this.mensaje.nombre.primero;
+        let numero = 0;
         if (!this.nuevoNombre || this.nuevoNombre.trim() === "") {
           this.mensaje.nombre = "Nombre es obligatorio";
           valido = false;
         } else {
-          this.mensaje.nombre = null;
+          numero++;
         }
 
         if (!this.nuevoApellido || this.nuevoApellido.trim() === "") {
           this.mensaje.apellido = "Apellido es obligatorio";
           valido = false;
         } else {
-          this.mensaje.apellido = null;
+          numero++;
+        }
+
+        if (numero === 2) {
+          return true;
+        } else {
           return false;
         }
-        return valido;
       } catch (error) {
         console.error("Error ha ocurrido un problema");
         console.error(error);
-        this.mostrar = true;
+        this.mostrarMensaje = true;
         this.mensajeFinal = "Ha ocurrido un error en el sistema";
         return false;
       }
@@ -183,24 +190,24 @@ export default {
   },
   mounted() {
     const cedula = this.$route.params.cedula;
-      console.log("Cédula:", cedula);
+    console.log("Cédula:", cedula);
 
-      const anio = this.$route.query.anio;
-      console.log("Año:", anio);
-      const mes = this.$route.query.mes;
-      console.log("Mes:", mes);
+    const anio = this.$route.query.anio;
+    console.log("Año:", anio);
+    const mes = this.$route.query.mes;
+    console.log("Mes:", mes);
     console.log("Mounted");
   },
   beforeUpdate() {
     console.log("beforeUpdate");
   },
-  updated(){
+  updated() {
     console.log("updated");
   },
-  beforeUnmount(){
+  beforeUnmount() {
     console.log("Destruyo o quito un componente");
   },
-  unmounted(){
+  unmounted() {
 
   }
 };
