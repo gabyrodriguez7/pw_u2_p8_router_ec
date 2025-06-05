@@ -1,18 +1,23 @@
 <template>
   <div class="option-container">
-  <ul>
-    <li>Pokemon 1</li>
-    <li>Pokemon 2</li>
-    <li>Pokemon 3</li>
-    <li>Pokemon 4</li>
-  </ul>
+    <ul>
+      <li v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.nombre }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-export default {
 
-}
+export default {
+  props: {
+    pokemons: {
+      type: Array,
+      required: true
+    },
+  },
+  
+
+};
 </script>
 
 <style>
@@ -22,7 +27,7 @@ ul {
 
 li {
   background: white;
-  border-radius: 5px ;
+  border-radius: 5px;
   border: 1px solid rgba(0, 0, 0, 0.2);
   cursor: pointer;
   margin-bottom: 10px;
@@ -37,5 +42,4 @@ li {
 li:hover {
   background: rgba(0, 0, 0, 0.2);
 }
-
 </style>
