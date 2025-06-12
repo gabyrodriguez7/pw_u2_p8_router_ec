@@ -1,7 +1,8 @@
 <template>
+      {{ mensaje2 }}
   <div class="option-container">
     <ul>
-      <li v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.nombre }}</li>
+      <li @click="comunicarclick(pokemon.id)" v-for="pokemon in pokemons" :key="pokemon.id">{{ pokemon.nombre }}</li>
     </ul>
   </div>
 </template>
@@ -9,13 +10,30 @@
 <script>
 
 export default {
+    data() {
+    return {
+      mensaje2:'mensaje2'
+    }
+  },
   props: {
     pokemons: {
       type: Array,
       required: true
     },
   },
-  
+  methods:{
+    comunicarclick(id){
+      console.log("Click...");
+      console.log("Id del hijo: "+id)
+      
+      const objetoEviado={
+        atributo:id,
+        atributo2:"Gaby",
+        atributo3:"dos "
+      }
+      this.$emit('seleccionado',objetoEviado)
+    },
+  },
 
 };
 </script>
