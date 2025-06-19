@@ -7,7 +7,8 @@
       <router-link to="/mascota">Mascota</router-link> |
       <router-link to="/buscarPais">Pais</router-link> |
       <router-link to="/preguntaYesNo">Pregunta</router-link> |
-      <router-link to="/Pokemon">Pokemon</router-link>
+      <router-link to="/Pokemon">Pokemon</router-link>|
+      <router-link to="/responsivo">Reponsivo</router-link>
     </nav>
   </div>
 </template> 

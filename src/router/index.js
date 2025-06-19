@@ -3,8 +3,14 @@ import EstudianteView from "../views/EstudianteView.vue";
 import EstudianteTablaView from "../views/EstudianteTablaView.vue";
 import MascotaView from "../views/MascotaView.vue";
 import PokemonView from "../views/PokemonView.vue";
+import ResponsivoView from "@/views/ResponsivoView.vue";
 
 const routes = [
+    {
+    path: "/responsivo",
+    name: "ResponsivoView",
+    component: ResponsivoView,
+  },
   {
     path: "/estudiante/:cedula",
     name: "estudianteView",
